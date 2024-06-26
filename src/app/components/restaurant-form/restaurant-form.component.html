@@ -1,0 +1,69 @@
+<div class="form-container">
+    <h2>{{isEdit ? 'Edit this restaurant' : 'Add a new Restaurant'}}</h2>
+    <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+        <div class="form-group"
+            [ngClass]="{'invalid': !restaurantForm.get('restaurant_id')?.valid && restaurantForm.get('restaurant_id')?.touched}">
+            <label for="restaurant_id">Restaurant ID</label>
+            <input id="restaurant_id" formControlName="restaurant_id" />
+            <div class="error-message"
+                *ngIf="!restaurantForm.get('restaurant_id')?.valid && restaurantForm.get('restaurant_id')?.touched">
+                Restaurant ID is required
+            </div>
+        </div>
+
+        <div class="form-group"
+            [ngClass]="{'invalid': !restaurantForm.get('name')?.valid && restaurantForm.get('name')?.touched}">
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" />
+            <div class="error-message" *ngIf="!restaurantForm.get('name')?.valid && restaurantForm.get('name')?.touched">
+                Name is required
+            </div>
+        </div>
+
+        <div formGroupName="address" class="form-group">
+            <label>Address:</label>
+            <div class="form-group"
+                [ngClass]="{'invalid': !restaurantForm.get('address.building')?.valid && restaurantForm.get('address.building')?.touched}">
+                <label for="building">Building</label>
+                <input id="building" formControlName="building" />
+                <div class="error-message"
+                    *ngIf="!restaurantForm.get('address.building')?.valid && restaurantForm.get('address.building')?.touched">
+                    Building is required
+                </div>
+            </div>
+            <div class="form-group"
+                [ngClass]="{'invalid': !restaurantForm.get('address.street')?.valid && restaurantForm.get('address.street')?.touched}">
+                <label for="street">Street</label>
+                <input id="street" formControlName="street" />
+                <div class="error-message"
+                    *ngIf="!restaurantForm.get('address.street')?.valid && restaurantForm.get('address.street')?.touched">
+                    Street is required
+                </div>
+            </div>
+            <div class="form-group"
+                [ngClass]="{'invalid': !restaurantForm.get('address.zipcode')?.valid && restaurantForm.get('address.zipcode')?.touched}">
+                <label for="zipcode">Zipcode</label>
+                <input id="zipcode" formControlName="zipcode" />
+                <div class="error-message"
+                    *ngIf="!restaurantForm.get('address.zipcode')?.valid && restaurantForm.get('address.zipcode')?.touched">
+                    Zipcode is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group"
+            [ngClass]="{'invalid': !restaurantForm.get('cuisine')?.valid && restaurantForm.get('cuisine')?.touched}">
+            <label for="cuisine">Cuisine</label>
+            <input id="cuisine" formControlName="cuisine" />
+            <div class="error-message"
+                *ngIf="!restaurantForm.get('cuisine')?.valid && restaurantForm.get('cuisine')?.touched">
+                Cuisine is required
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!restaurantForm.valid">Submit</button>
+            <button mat-raised-button color="accent" type="button" (click)="goBack()">Back</button>
+        </div>
+    </form>
+</div>

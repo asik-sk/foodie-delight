@@ -1,0 +1,74 @@
+/* Style for the form container */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/* Style for each form group */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Style for the form labels */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style for the form inputs */
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style for invalid form inputs */
+.form-group.invalid input {
+    border-color: #e74c3c;
+}
+
+/* Style for error messages */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    position: absolute;
+    bottom: -20px;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Style for the address form group */
+.form-group[formGroupName="address"]>.form-group {
+    margin-bottom: 10px;
+}
+
+/* Flex layout for form container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Style for the button group */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}

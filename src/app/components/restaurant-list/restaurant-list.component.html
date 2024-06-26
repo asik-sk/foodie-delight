@@ -1,0 +1,29 @@
+<mat-toolbar #toolbar color="primary">
+    <span class="header-title">Foodie Delight</span>
+    <button mat-button class="add-button" (click)="addRestaurant()">Add New Restaurant</button>
+</mat-toolbar>
+<div class="container responsive-grid">
+    <mat-card *ngFor="let card of cards()">
+        <mat-card-header>
+            <mat-card-title>{{ card.name }} </mat-card-title>
+        </mat-card-header>
+        <br />
+        <mat-card-content>
+            <br />
+            Cuisine: {{ card.cuisine }}
+            <p>
+                Address: {{ card.address.building }} {{ card.address.street }} {{ card.address.zipcode }}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="openDetailView(card)">DETAILS</button>
+            <button mat-button (click)="openDeleteDialog(card)" class="mat-del-btn">DELETE</button>
+            <!-- <button mat-mini-fab aria-label="Example icon button with a delete icon">
+            <mat-icon>info</mat-icon>
+          </button>
+          <button mat-mini-fab aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+          </button> -->
+        </mat-card-actions>
+    </mat-card>
+</div>
