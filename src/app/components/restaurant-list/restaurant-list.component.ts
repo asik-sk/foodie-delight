@@ -9,18 +9,6 @@ import { DataService } from '../../services/data.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CardContent } from '../../models/CardContent';
 
-// type CardContent = {
-//   id: number,
-//   restaurant_id: number,
-//   name: string;
-//   address: {
-//     building: string,
-//     street: string,
-//     zipcode: string
-//   },
-//   cuisine: string;
-// };
-
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
@@ -46,7 +34,6 @@ export class RestaurantListComponent {
 
   ngOnInit() {
     this.dataService.getRestaurants().subscribe((resp: any) => {
-      console.log("resp", resp);
       this.setCards(resp);
     })
   }
@@ -72,7 +59,14 @@ export class RestaurantListComponent {
     const dialogRef = this.dialog.open(DeleteDialog);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result === true) {
+        console.log(`Dialog result: ${result}`, result);
+        this.dataService.deleteRestaurant(item.id).subscribe(() => {
+          console.log(`Restaurant with id ${item.id} deleted`);
+          // Remove the deleted restaurant from the list
+          this.cards.update(cards => cards.filter(card => card.id !== item.id));
+        });
+      }
     });
   }
 

@@ -23,17 +23,6 @@
       "id": "0c5b"
     },
     {
-      "restaurant_id": "40356278",
-      "name": "Wingman’s Pub",
-      "address": {
-        "building": "8825",
-        "street": "Astoria Boulevard",
-        "zipcode": "11369"
-      },
-      "cuisine": "American",
-      "id": "c22b"
-    },
-    {
       "restaurant_id": "40356290",
       "name": "Wine O’Clock Tapas Bar",
       "address": {
@@ -43,17 +32,6 @@
       },
       "cuisine": "Mexican",
       "id": "e147"
-    },
-    {
-      "restaurant_id": "40356311",
-      "name": "Lettuce Eat Bistro ",
-      "address": {
-        "building": "8825",
-        "street": "Astoria Boulevard",
-        "zipcode": "11369"
-      },
-      "cuisine": "Chinese",
-      "id": "e082"
     },
     {
       "restaurant_id": "40356378",

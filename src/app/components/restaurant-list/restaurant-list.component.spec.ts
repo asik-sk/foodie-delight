@@ -13,6 +13,8 @@ import { CardContent } from '../../models/CardContent';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('RestaurantListComponent', () => {
   let component: RestaurantListComponent;
@@ -105,6 +107,40 @@ describe('RestaurantListComponent', () => {
     expect(routerSpy).toHaveBeenCalledWith(['/add']);
   });
 
+  it('should resize toolbar on scroll', () => {
+    const toolbar: DebugElement = fixture.debugElement.query(By.css('.toolbar')); // Use the appropriate selector for the toolbar
+    component.toolbar = { _elementRef: { nativeElement: toolbar.nativeElement } };
+
+    window.scrollTo(0, 200);
+    window.dispatchEvent(new Event('scroll'));
+
+    fixture.detectChanges();
+
+    expect(toolbar.nativeElement.style.fontSize).toBe('30px');
+    expect(toolbar.nativeElement.style.height).toBe('50px');
+
+    window.scrollTo(0, 100);
+    window.dispatchEvent(new Event('scroll'));
+
+    fixture.detectChanges();
+
+    expect(toolbar.nativeElement.style.fontSize).toBe('90px');
+    expect(toolbar.nativeElement.style.height).toBe('150px');
+  });
+
+  it('should delete restaurant and update list when delete is confirmed', () => {
+    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(true), close: null });
+    mockDialog.open.and.returnValue(dialogRefSpyObj);
+
+    const mockRestaurant: CardContent = mockRestaurants[0];
+    component.cards.set(mockRestaurants);
+    component.openDeleteDialog(mockRestaurant);
+
+    expect(mockDialog.open).toHaveBeenCalledWith(DeleteDialog);
+    expect(mockDataService.deleteRestaurant).toHaveBeenCalledWith(mockRestaurant.id);
+    expect(component.cards().length).toBe(mockRestaurants.length - 1);
+    expect(component.cards().find(card => card.id === mockRestaurant.id)).toBeUndefined();
+  });
   // Add more tests as needed
 
 });

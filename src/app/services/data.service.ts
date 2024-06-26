@@ -27,4 +27,8 @@ export class DataService {
     return this.httpClient.put<CardContent>(this.baseUrl + '/restaurants/' + restaurant.id, restaurant);
   }
 
+  deleteRestaurant(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/restaurants/${id}`);
+  }
+
 }
